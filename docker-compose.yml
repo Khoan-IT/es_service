@@ -1,0 +1,20 @@
+services:
+  emotion-speech-service:
+    build: .
+    image: emotion_speech_service:latest
+    volumes:
+      - ./emotion-speech-service:/src/emotion-speech-service
+    ports:
+      - "${EMOTION_SPEECH_SERVICE_PORT:-5002}:${EMOTION_SPEECH_SERVICE_PORT_DOCKER:-5002}"
+    environment:
+      - GRPC_MAX_WORKERS=6
+      - GRPC_MAX_CONCURRENT_RPC=6
+
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G

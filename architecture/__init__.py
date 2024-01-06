@@ -1,0 +1,1 @@
+from architecture.model import SiameseNetworkForSpeechClassification
